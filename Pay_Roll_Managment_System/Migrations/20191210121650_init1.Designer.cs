@@ -10,8 +10,8 @@ using Pay_Roll_Managment_System.Models;
 namespace Pay_Roll_Managment_System.Migrations
 {
     [DbContext(typeof(PayRollManagmentContext))]
-    [Migration("20191210120939_init3")]
-    partial class init3
+    [Migration("20191210121650_init1")]
+    partial class init1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
