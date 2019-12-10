@@ -34,7 +34,7 @@ namespace Pay_Roll_Managment_System.Migrations
                     ContactInfo = table.Column<string>(nullable: false),
                     Gender = table.Column<bool>(nullable: false),
                     RegistrationNo = table.Column<string>(nullable: false),
-                    ImgUrl = table.Column<string>(nullable: false),
+                    ImgUrl = table.Column<string>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     PoistionId = table.Column<int>(nullable: false)
                 },
