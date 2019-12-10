@@ -32,6 +32,16 @@ namespace Pay_Roll_Managment_System
             services.AddDbContext<PayRollManagmentContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DevConnection"))
             ) ;
+
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowMyOrigin",
+                builder => builder.AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowAnyOrigin());
+            });
+
             services.AddScoped<IEmployeeRepository,EmployeeRepository>();
             services.AddScoped<IPositionRepository, PositionRepository>();
         }
@@ -47,6 +57,10 @@ namespace Pay_Roll_Managment_System
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("AllowMyOrigin");
+
+            app.UseCors(options => options.WithOrigins("http://localhost:3000").AllowAnyMethod());
 
             app.UseAuthorization();
 
