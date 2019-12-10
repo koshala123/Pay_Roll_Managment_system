@@ -39,11 +39,14 @@ namespace Pay_Roll_Managment_System.Controllers
             }
             var EmployeeDto = new EmployeeDto
             {
+                Id =Employee.EmployeeId,
                 RegistrationNo = Employee.RegistrationNo,
                 FirstName = Employee.FirstName,
                 LastName = Employee.LastName,
                 Gender = Employee.Gender,
-                CreatedOn = Employee.CreatedOn
+                CreatedOn = Employee.CreatedOn,
+                Address = Employee.Address,
+                ContactInfo = Employee.ContactInfo
             };
             return Ok(EmployeeDto);
         }
@@ -66,11 +69,14 @@ namespace Pay_Roll_Managment_System.Controllers
             {
                 EmployeeDto.Add(new EmployeeDto 
                 {
+                    Id = Employee.EmployeeId,
                     RegistrationNo = Employee.RegistrationNo,
                     FirstName = Employee.FirstName,
                     LastName = Employee.LastName,
-                     Gender = Employee.Gender,
-                     CreatedOn = Employee.CreatedOn
+                    Gender = Employee.Gender,
+                    CreatedOn = Employee.CreatedOn,
+                    Address = Employee.Address,
+                    ContactInfo = Employee.ContactInfo
                 });                
             }
             return Ok(EmployeeDto);
