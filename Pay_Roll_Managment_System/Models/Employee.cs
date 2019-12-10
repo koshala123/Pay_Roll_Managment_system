@@ -26,7 +26,7 @@ namespace Pay_Roll_Managment_System.Models
         public bool Gender { get; set; } // 1 == male , 0 == female
         [Required]
         public string RegistrationNo { get; set; }
-        [Required]
+        //[Required]
         public string ImgUrl { get; set; }
         [Required]
         public DateTime CreatedOn { get; set; }
