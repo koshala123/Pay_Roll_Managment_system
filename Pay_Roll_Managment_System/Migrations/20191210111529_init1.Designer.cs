@@ -10,8 +10,8 @@ using Pay_Roll_Managment_System.Models;
 namespace Pay_Roll_Managment_System.Migrations
 {
     [DbContext(typeof(PayRollManagmentContext))]
-    [Migration("20191209140602_Added Position Table")]
-    partial class AddedPositionTable
+    [Migration("20191210111529_init1")]
+    partial class init1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,26 @@ namespace Pay_Roll_Managment_System.Migrations
                 .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Pay_Roll_Managment_System.Models.Attendance", b =>
+                {
+                    b.Property<int>("AttendanceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("dateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("AttendanceId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("Attendances");
+                });
 
             modelBuilder.Entity("Pay_Roll_Managment_System.Models.Employee", b =>
                 {
@@ -89,6 +109,15 @@ namespace Pay_Roll_Managment_System.Migrations
                     b.HasKey("PositionId");
 
                     b.ToTable("Positions");
+                });
+
+            modelBuilder.Entity("Pay_Roll_Managment_System.Models.Attendance", b =>
+                {
+                    b.HasOne("Pay_Roll_Managment_System.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Pay_Roll_Managment_System.Models.Employee", b =>

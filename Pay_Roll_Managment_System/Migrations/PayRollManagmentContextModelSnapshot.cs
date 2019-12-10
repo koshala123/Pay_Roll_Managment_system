@@ -68,7 +68,6 @@ namespace Pay_Roll_Managment_System.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("ImgUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
