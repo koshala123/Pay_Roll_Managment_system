@@ -86,11 +86,11 @@ namespace Pay_Roll_Managment_System.Controllers
 
         //api/Employees
         [HttpPost]
-        [ProducesResponseType(201, Type = typeof(Employee))]
+        [ProducesResponseType(201, Type = typeof(EmployeeDto))]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
 
-        public IActionResult CreateEmpoyee([FromBody]Employee EmployeeToCreate)
+        public IActionResult CreateEmpoyee([FromBody]EmployeeDto EmployeeToCreate)
         {
             if (EmployeeToCreate ==null)
             {
@@ -119,22 +119,22 @@ namespace Pay_Roll_Managment_System.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
 
-        public IActionResult UpdatEmployee (int EmployeeId ,[FromBody]Employee EmployeeToUpdate)
+        public IActionResult UpdatEmployee (int EmployeeId ,[FromBody]EmployeeDto EmployeeToUpdate)
         {
             if (EmployeeToUpdate == null)
             {
                 return BadRequest(ModelState);
             }
 
-            if (EmployeeId != EmployeeToUpdate.EmployeeId)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (EmployeeId != EmployeeToUpdate.EmployeeId)
+            //{
+            //   return BadRequest(ModelState);
+            //}
 
-            if (!_EmployeeRepository.EmployeeExists(EmployeeId))
-            {
-                ModelState.AddModelError("", "Employee Doesn't Exsist.");
-            }
+            //if (!_EmployeeRepository.EmployeeExists(EmployeeId))
+            //{
+            //    ModelState.AddModelError("", "Employee Doesn't Exsist.");
+            //}
 
             // cheking of forign key 1 if conidtion
 
