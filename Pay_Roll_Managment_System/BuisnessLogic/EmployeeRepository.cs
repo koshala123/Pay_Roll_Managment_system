@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Pay_Roll_Managment_System.Dtos;
 using Pay_Roll_Managment_System.Models;
 
 namespace Pay_Roll_Managment_System.BuisnessLogic
@@ -19,9 +20,11 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
             return Save();
         }
 
-        public bool DeleteEmployee(Employee employee)
+        public bool DeleteEmployee(int EmployeeId)
         {
+            var employee = _PayRollManagmentContext.Employees.Where(a => a.EmployeeId == EmployeeId).FirstOrDefault();
             _PayRollManagmentContext.Remove(employee);
+            //_PayRollManagmentContext.Remove(employee);
             return Save();
         }
 
@@ -30,14 +33,50 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
             return _PayRollManagmentContext.Employees.Any(a => a.EmployeeId == EmployeeId);
         }
 
-        public Employee GetEmployee(int EmployeeId)
+        public EmployeeDto GetEmployee(int EmployeeId)
         {
-            return _PayRollManagmentContext.Employees.Where(a => a.EmployeeId == EmployeeId).FirstOrDefault();
+            var innerJoinQuery = (from employee in _PayRollManagmentContext.Employees
+                                 join position in _PayRollManagmentContext.Positions
+                                 on employee.PoistionId equals position.PositionId
+                                 where employee.EmployeeId == EmployeeId
+                                 select new EmployeeDto
+                                 {
+                                     EmployeeId = employee.EmployeeId,
+                                     FirstName = employee.FirstName,
+                                     LastName = employee.LastName,
+                                     RegistrationNo = employee.RegistrationNo,
+                                     Address = employee.Address,
+                                     ContactInfo = employee.ContactInfo,
+                                     CreatedOn = employee.CreatedOn,
+                                     PositionName = position.Name
+
+                                 }).FirstOrDefault();
+
+            return innerJoinQuery;
+            // return _PayRollManagmentContext.Employees.Where(a => a.EmployeeId == EmployeeId).FirstOrDefault();
         }
 
-        public ICollection<Employee> GetEmployees()
+        public ICollection<EmployeeDto> GetEmployees()
         {
-            return _PayRollManagmentContext.Employees.OrderBy(a => a.EmployeeId).ToList();
+            var innerJoinQuery = (from employee in _PayRollManagmentContext.Employees
+                                  join position in _PayRollManagmentContext.Positions
+                                  on employee.PoistionId equals position.PositionId
+                                  select new EmployeeDto
+                                  {
+                                      EmployeeId = employee.EmployeeId,
+                                      FirstName = employee.FirstName,
+                                      LastName = employee.LastName,
+                                      RegistrationNo = employee.RegistrationNo,
+                                      Address = employee.Address,
+                                      ContactInfo = employee.ContactInfo,
+                                      CreatedOn = employee.CreatedOn,
+                                      PositionName = position.Name
+
+                                  }).ToList();
+
+            return innerJoinQuery;
+                
+            //return _PayRollManagmentContext.Employees.OrderBy(a => a.EmployeeId).ToList();
         }
 
         public bool Save()

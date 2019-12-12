@@ -33,19 +33,25 @@ namespace Pay_Roll_Managment_System.Controllers
                 return NotFound("Employee doesn't exsist");
             }
             var Employee = _EmployeeRepository.GetEmployee(EmployeeId);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var EmployeeDto = new EmployeeDto
+
+            /*var EmployeeDto = new EmployeeDto
             {
+                EmployeeId = Employee.EmployeeId,
                 RegistrationNo = Employee.RegistrationNo,
                 FirstName = Employee.FirstName,
                 LastName = Employee.LastName,
                 Gender = Employee.Gender,
-                CreatedOn = Employee.CreatedOn
-            };
-            return Ok(EmployeeDto);
+                CreatedOn = Employee.CreatedOn,
+                Address =Employee.Address,
+                ContactInfo = Employee.ContactInfo
+            };*/
+
+            return Ok(Employee);
         }
 
         //api/Employees
@@ -60,7 +66,8 @@ namespace Pay_Roll_Managment_System.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var EmployeeDto = new List<EmployeeDto>();
+
+            /*var EmployeeDto = new List<EmployeeDto>();
 
             foreach (var Employee in Employees)
             {
@@ -72,8 +79,9 @@ namespace Pay_Roll_Managment_System.Controllers
                      Gender = Employee.Gender,
                      CreatedOn = Employee.CreatedOn
                 });                
-            }
-            return Ok(EmployeeDto);
+            }*/
+
+            return Ok(Employees);
         }
 
         //api/Employees
@@ -158,7 +166,7 @@ namespace Pay_Roll_Managment_System.Controllers
             {
                 return NotFound();
             }
-            var EmployeeToDelte = _EmployeeRepository.GetEmployee(EmployeeId);
+            /*var EmployeeToDelte = _EmployeeRepository.GetEmployee(EmployeeId);
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -166,7 +174,8 @@ namespace Pay_Roll_Managment_System.Controllers
             if (!_EmployeeRepository.DeleteEmployee(EmployeeToDelte))
             {
                 return StatusCode(500, ModelState);
-            }
+            }*/
+            _EmployeeRepository.DeleteEmployee(EmployeeId);
             return NoContent();
         }
 
