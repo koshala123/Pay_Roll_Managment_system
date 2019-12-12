@@ -62,6 +62,9 @@ namespace Pay_Roll_Managment_System
 
             app.UseRouting();
             app.UseCors("AllowMyOrigin");
+
+            app.UseCors(options => options.WithOrigins("http://localhost:3000").AllowAnyMethod());
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
