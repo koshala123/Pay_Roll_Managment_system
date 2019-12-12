@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20191210111446_init2.cs" />
-    <Compile Remove="Migrations\20191210111446_init2.Designer.cs" />
+    <Compile Remove="Migrations\20191212120058_init dtabase change.cs" />
+    <Compile Remove="Migrations\20191212120058_init dtabase change.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

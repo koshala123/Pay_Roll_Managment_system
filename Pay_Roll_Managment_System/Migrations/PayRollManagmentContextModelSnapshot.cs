@@ -64,8 +64,9 @@ namespace Pay_Roll_Managment_System.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Gender")
-                        .HasColumnType("bit");
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImgUrl")
                         .HasColumnType("nvarchar(max)");
@@ -111,6 +112,29 @@ namespace Pay_Roll_Managment_System.Migrations
                     b.ToTable("OverTimes");
                 });
 
+            modelBuilder.Entity("Pay_Roll_Managment_System.Models.Payment", b =>
+                {
+                    b.Property<int>("Paymentid")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("AmountPaid")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Paymentid");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("Payments");
+                });
+
             modelBuilder.Entity("Pay_Roll_Managment_System.Models.Position", b =>
                 {
                     b.Property<int>("PositionId")
@@ -150,6 +174,15 @@ namespace Pay_Roll_Managment_System.Migrations
                 });
 
             modelBuilder.Entity("Pay_Roll_Managment_System.Models.OverTime", b =>
+                {
+                    b.HasOne("Pay_Roll_Managment_System.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Pay_Roll_Managment_System.Models.Payment", b =>
                 {
                     b.HasOne("Pay_Roll_Managment_System.Models.Employee", "Employee")
                         .WithMany()
