@@ -14,9 +14,23 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
         {
             _PayRollManagmentContext = PayRollManagmentContext;
         }
-        public bool CreateEmployee(Employee employee)
+        public bool CreateEmployee(EmployeeDto employee)
         {
-            _PayRollManagmentContext.Add(employee);
+            Employee emp = new Employee();
+            
+            
+            emp.FirstName = employee.FirstName;
+            emp.LastName = employee.LastName;
+            emp.RegistrationNo = employee.RegistrationNo;
+            emp.Gender = employee.Gender;
+            emp.Address = employee.Address;
+            emp.ContactInfo = employee.ContactInfo;
+            emp.Birthdate = employee.Birthdate;
+            emp.ImgUrl = employee.ImgUrl;
+            emp.CreatedOn = employee.CreatedOn;
+            emp.PoistionId = Int32.Parse(employee.PositionId);
+
+            _PayRollManagmentContext.Add(emp);
             return Save();
         }
 
@@ -85,9 +99,23 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
             return saved >= 0 ? true : false;
         }
 
-        public bool UpdateEmployee(Employee employee)
+        public bool UpdateEmployee(EmployeeDto employee)
         {
-            _PayRollManagmentContext.Update(employee);
+            Employee emp = new Employee();
+            
+            emp.FirstName = employee.FirstName;
+            emp.LastName = employee.LastName;
+            emp.RegistrationNo = employee.RegistrationNo;
+            emp.Gender = employee.Gender;
+            emp.Address = employee.Address;
+            emp.ContactInfo = employee.ContactInfo;
+            emp.Birthdate = employee.Birthdate;
+            emp.ImgUrl = employee.ImgUrl;
+            emp.CreatedOn = employee.CreatedOn;
+            emp.PoistionId = Int32.Parse(employee.PositionId);
+            emp.EmployeeId = Int32.Parse(employee.StringEmployeeId);
+
+            _PayRollManagmentContext.Update(emp);
             return Save();
         }
     }

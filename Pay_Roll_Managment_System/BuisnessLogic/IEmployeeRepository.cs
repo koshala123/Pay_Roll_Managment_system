@@ -12,8 +12,8 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
         ICollection<EmployeeDto> GetEmployees();
         EmployeeDto GetEmployee(int EmployeeId);
         bool EmployeeExists(int EmployeeId);
-        bool CreateEmployee(Employee employee);
-        bool UpdateEmployee(Employee employee);
+        bool CreateEmployee(EmployeeDto employee);
+        bool UpdateEmployee(EmployeeDto employee);
         bool DeleteEmployee(int EmployeeId);
         bool Save();
     }

@@ -15,7 +15,12 @@ namespace Pay_Roll_Managment_System.Dtos
         public string Address { get; set; }
         public string ContactInfo { get; set; }
         public DateTime CreatedOn { get; set; }
-
+        public DateTime Birthdate { get; set; }
+        public string ImgUrl { get; set; }
         public string PositionName { get; set; }
+
+        public string PositionId { get; set; }
+        public string StringEmployeeId { get; set; }
+
     }
 }
