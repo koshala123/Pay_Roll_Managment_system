@@ -88,6 +88,29 @@ namespace Pay_Roll_Managment_System.Migrations
                     b.ToTable("Employees");
                 });
 
+            modelBuilder.Entity("Pay_Roll_Managment_System.Models.OverTime", b =>
+                {
+                    b.Property<int>("OverTimeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AdditionalHours")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OverTimeId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("OverTimes");
+                });
+
             modelBuilder.Entity("Pay_Roll_Managment_System.Models.Position", b =>
                 {
                     b.Property<int>("PositionId")
@@ -122,6 +145,15 @@ namespace Pay_Roll_Managment_System.Migrations
                     b.HasOne("Pay_Roll_Managment_System.Models.Position", "Position")
                         .WithMany()
                         .HasForeignKey("PoistionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Pay_Roll_Managment_System.Models.OverTime", b =>
+                {
+                    b.HasOne("Pay_Roll_Managment_System.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

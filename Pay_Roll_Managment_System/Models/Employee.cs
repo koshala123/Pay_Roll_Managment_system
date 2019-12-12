@@ -27,6 +27,7 @@ namespace Pay_Roll_Managment_System.Models
         [Required]
         public string RegistrationNo { get; set; }
         
+        //[Required]
         public string ImgUrl { get; set; }
         [Required]
         public DateTime CreatedOn { get; set; }
