@@ -17,6 +17,7 @@ namespace Pay_Roll_Managment_System.Models
         public DbSet<Attendance> Attendances { get; set; }
         public DbSet<OverTime> OverTimes { get; set; }
         public DbSet<Payment> Payments { get; set; }
-    
+        public DbSet<Salary> Salaries { get; set; }
+
     }
 }

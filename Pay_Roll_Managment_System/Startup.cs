@@ -46,6 +46,8 @@ namespace Pay_Roll_Managment_System
             services.AddScoped<IPositionRepository, PositionRepository>();
             services.AddScoped<IAttendanceRepository, AttendanceReposiroty>();
             services.AddScoped<IOverTimeRepository, OverTimeRepository>();
+            services.AddScoped<ISalaryRepository, SalaryRepository>();
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
