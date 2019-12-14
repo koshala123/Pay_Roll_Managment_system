@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Pay_Roll_Managment_System.Dtos;
 using Pay_Roll_Managment_System.Models;
 
 namespace Pay_Roll_Managment_System.BuisnessLogic
@@ -19,14 +20,41 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
             return Save();
         }
 
-        public OverTime GetOverTime(int OverTimeId)
+        public OverTimeDto GetOverTime(int OverTimeId)
         {
-            return _PayRollManagmentContext.OverTimes.Where(a => a.OverTimeId == OverTimeId).FirstOrDefault();
+            var InnerJoinQuery = (from overtime in _PayRollManagmentContext.OverTimes
+                                  join employee in _PayRollManagmentContext.Employees
+                                  on overtime.EmployeeId equals employee.EmployeeId
+                                  where overtime.OverTimeId == OverTimeId
+                                  select new OverTimeDto
+                                  {
+                                      OverTimeId = overtime.OverTimeId,
+                                      EmployeeId = overtime.EmployeeId,
+                                      Amount = overtime.Amount,
+                                      AdditionalHours = overtime.AdditionalHours,
+                                      EmployeeFirstName = employee.FirstName,
+                                      EmployeeLastName = employee.LastName
+                                  }
+                                  ).FirstOrDefault();
+            return InnerJoinQuery;
         }
 
-        public ICollection<OverTime> GetOverTimes()
+        public ICollection<OverTimeDto> GetOverTimes()
         {
-            return _PayRollManagmentContext.OverTimes.OrderBy(a => a.OverTimeId).ToList();
+            var InnerJoinQuery = (from overtime in _PayRollManagmentContext.OverTimes
+                                  join employee in _PayRollManagmentContext.Employees
+                                  on overtime.EmployeeId equals employee.EmployeeId
+                                  select new OverTimeDto
+                                  {
+                                      OverTimeId = overtime.OverTimeId,
+                                      EmployeeId = overtime.EmployeeId,
+                                      Amount = overtime.Amount,
+                                      AdditionalHours = overtime.AdditionalHours,
+                                      EmployeeFirstName = employee.FirstName,
+                                      EmployeeLastName = employee.LastName
+                                  }
+                                  ).ToList();
+            return InnerJoinQuery;
         }
 
         public bool OverTimeExsist(int OverTimeId)
