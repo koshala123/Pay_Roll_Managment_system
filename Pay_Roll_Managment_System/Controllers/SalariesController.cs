@@ -52,7 +52,7 @@ namespace Pay_Roll_Managment_System.Controllers
             return Ok(salaries);
         }
 
-        //api/positions
+        //api/Salaries
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(Salary))]
         [ProducesResponseType(400)]
@@ -74,7 +74,7 @@ namespace Pay_Roll_Managment_System.Controllers
             return CreatedAtRoute("GetSalary", new { salaryId = salary.SalaryId }, salary);
         }
 
-        //api/authors/authorId
+        //api/salaries/salaryId
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]

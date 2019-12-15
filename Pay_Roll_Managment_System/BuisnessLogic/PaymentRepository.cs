@@ -46,5 +46,11 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
             _PayRollManagmentContext.Update(Payment);
             return Save();
         }
+
+        public bool DeletePayment(Payment payment)
+        {
+            _PayRollManagmentContext.Payments.Remove(payment);
+            return Save();
+        }
     }
 }
