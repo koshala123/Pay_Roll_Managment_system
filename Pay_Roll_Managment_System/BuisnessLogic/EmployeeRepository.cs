@@ -62,7 +62,9 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
                                      Address = employee.Address,
                                      ContactInfo = employee.ContactInfo,
                                      CreatedOn = employee.CreatedOn,
-                                     PositionName = position.Name
+                                     PositionName = position.Name,
+                                     Birthdate = employee.Birthdate,
+                                     Gender = employee.Gender
 
                                  }).FirstOrDefault();
 
@@ -84,7 +86,9 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
                                       Address = employee.Address,
                                       ContactInfo = employee.ContactInfo,
                                       CreatedOn = employee.CreatedOn,
-                                      PositionName = position.Name
+                                      PositionName = position.Name,
+                                      Birthdate = employee.Birthdate,
+                                      Gender = employee.Gender
 
                                   }).ToList();
 
