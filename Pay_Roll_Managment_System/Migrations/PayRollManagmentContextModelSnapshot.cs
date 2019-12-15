@@ -29,7 +29,10 @@ namespace Pay_Roll_Managment_System.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("dateTime")
+                    b.Property<DateTime>("inTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("outTime")
                         .HasColumnType("datetime2");
 
                     b.HasKey("AttendanceId");
@@ -155,6 +158,38 @@ namespace Pay_Roll_Managment_System.Migrations
                     b.ToTable("Positions");
                 });
 
+            modelBuilder.Entity("Pay_Roll_Managment_System.Models.Salary", b =>
+                {
+                    b.Property<int>("SalaryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BasicSalary")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Bonus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Commission")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OverTime")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PoistionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SalaryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SalaryId");
+
+                    b.HasIndex("PoistionId");
+
+                    b.ToTable("Salaries");
+                });
+
             modelBuilder.Entity("Pay_Roll_Managment_System.Models.Attendance", b =>
                 {
                     b.HasOne("Pay_Roll_Managment_System.Models.Employee", "Employee")
@@ -187,6 +222,15 @@ namespace Pay_Roll_Managment_System.Migrations
                     b.HasOne("Pay_Roll_Managment_System.Models.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Pay_Roll_Managment_System.Models.Salary", b =>
+                {
+                    b.HasOne("Pay_Roll_Managment_System.Models.Position", "Position")
+                        .WithMany()
+                        .HasForeignKey("PoistionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

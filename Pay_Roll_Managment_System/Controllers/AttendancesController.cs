@@ -77,5 +77,30 @@ namespace Pay_Roll_Managment_System.Controllers
             }
             return CreatedAtRoute("GetAttendance", new { AttendanceId = Attendance.AttendanceId }, Attendance);
         }
+
+        [HttpPut("{AttendanceId}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        public IActionResult UpdateAttendance (int AttendanceId,[FromBody]Attendance attendanceToUpdate)
+        {
+            if (attendanceToUpdate == null)
+            {
+                return BadRequest(ModelState);
+            }
+            if (!_AttendanceRepository.AttendanceExsists(AttendanceId))
+            {
+                ModelState.AddModelError("","Salary Doesn't Exsist");
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (!_AttendanceRepository.UpdateAttendance(attendanceToUpdate))
+            {
+                return StatusCode(500, ModelState);
+            }
+            return NoContent();
+        }
     }
 }

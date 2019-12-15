@@ -100,7 +100,7 @@ namespace Pay_Roll_Managment_System.Controllers
             return NoContent();
         }
 
-        //api/authors/authorId
+        //api/salaries/salaryid
         [HttpPut("{salaryId}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -121,7 +121,7 @@ namespace Pay_Roll_Managment_System.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (_SalaryRepository.UpdateSalary(salaryToUpdate))
+            if (!_SalaryRepository.UpdateSalary(salaryToUpdate))
             {
                 return StatusCode(500, ModelState);
             }

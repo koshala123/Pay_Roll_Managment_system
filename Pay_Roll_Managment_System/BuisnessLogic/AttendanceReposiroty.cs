@@ -39,5 +39,10 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
             var save =_PayRollManagmentContext.SaveChanges();
             return save >= 0 ? true : false;
         }
+        public bool UpdateAttendance(Attendance Attendance)
+        {
+            _PayRollManagmentContext.Update(Attendance);
+            return Save();
+        }
     }
 }

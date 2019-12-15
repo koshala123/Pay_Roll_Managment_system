@@ -13,16 +13,14 @@ namespace Pay_Roll_Managment_System.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
         public int AttendanceId { get; set; }
 
-        [Required]
-        public DateTime dateTime { get; set; }
+        
+        public DateTime inTime { get; set; }
+        public DateTime outTime { get; set; }
 
         [ForeignKey("EmployeeId")]
         public Employee Employee { get; set; }
         public int EmployeeId { get; set; }
 
-        public Attendance()
-        {
-            dateTime = DateTime.Now;
-        }
+       
     }
 }
