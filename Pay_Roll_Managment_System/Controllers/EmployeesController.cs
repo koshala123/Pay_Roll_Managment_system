@@ -33,20 +33,19 @@ namespace Pay_Roll_Managment_System.Controllers
                 return NotFound("Employee doesn't exsist");
             }
             var Employee = _EmployeeRepository.GetEmployee(EmployeeId);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var EmployeeDto = new EmployeeDto
+
+            /*var EmployeeDto = new EmployeeDto
             {
-                Id =Employee.EmployeeId,
                 RegistrationNo = Employee.RegistrationNo,
                 FirstName = Employee.FirstName,
                 LastName = Employee.LastName,
                 Gender = Employee.Gender,
-                CreatedOn = Employee.CreatedOn,
-                Address = Employee.Address,
-                ContactInfo = Employee.ContactInfo
+                CreatedOn = Employee.CreatedOn
             };
             return Ok(EmployeeDto);
         }
@@ -63,7 +62,8 @@ namespace Pay_Roll_Managment_System.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var EmployeeDto = new List<EmployeeDto>();
+
+            /*var EmployeeDto = new List<EmployeeDto>();
 
             foreach (var Employee in Employees)
             {
@@ -78,17 +78,18 @@ namespace Pay_Roll_Managment_System.Controllers
                     Address = Employee.Address,
                     ContactInfo = Employee.ContactInfo
                 });                
-            }
-            return Ok(EmployeeDto);
+            }*/
+
+            return Ok(Employees);
         }
 
         //api/Employees
         [HttpPost]
-        [ProducesResponseType(201, Type = typeof(Employee))]
+        [ProducesResponseType(201, Type = typeof(EmployeeDto))]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
 
-        public IActionResult CreateEmpoyee([FromBody]Employee EmployeeToCreate)
+        public IActionResult CreateEmpoyee([FromBody]EmployeeDto EmployeeToCreate)
         {
             if (EmployeeToCreate ==null)
             {
@@ -117,22 +118,22 @@ namespace Pay_Roll_Managment_System.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
 
-        public IActionResult UpdatEmployee (int EmployeeId ,[FromBody]Employee EmployeeToUpdate)
+        public IActionResult UpdatEmployee (int EmployeeId ,[FromBody]EmployeeDto EmployeeToUpdate)
         {
             if (EmployeeToUpdate == null)
             {
                 return BadRequest(ModelState);
             }
 
-            if (EmployeeId != EmployeeToUpdate.EmployeeId)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (EmployeeId != EmployeeToUpdate.EmployeeId)
+            //{
+            //   return BadRequest(ModelState);
+            //}
 
-            if (!_EmployeeRepository.EmployeeExists(EmployeeId))
-            {
-                ModelState.AddModelError("", "Employee Doesn't Exsist.");
-            }
+            //if (!_EmployeeRepository.EmployeeExists(EmployeeId))
+            //{
+            //    ModelState.AddModelError("", "Employee Doesn't Exsist.");
+            //}
 
             // cheking of forign key 1 if conidtion
 
@@ -164,7 +165,7 @@ namespace Pay_Roll_Managment_System.Controllers
             {
                 return NotFound();
             }
-            var EmployeeToDelte = _EmployeeRepository.GetEmployee(EmployeeId);
+            /*var EmployeeToDelte = _EmployeeRepository.GetEmployee(EmployeeId);
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -172,7 +173,8 @@ namespace Pay_Roll_Managment_System.Controllers
             if (!_EmployeeRepository.DeleteEmployee(EmployeeToDelte))
             {
                 return StatusCode(500, ModelState);
-            }
+            }*/
+            _EmployeeRepository.DeleteEmployee(EmployeeId);
             return NoContent();
         }
 

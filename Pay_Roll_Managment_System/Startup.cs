@@ -33,19 +33,21 @@ namespace Pay_Roll_Managment_System
             options.UseSqlServer(Configuration.GetConnectionString("DevConnection"))
             ) ;
 
-
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowMyOrigin",
                 builder => builder.AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowAnyOrigin());
+
             });
 
             services.AddScoped<IEmployeeRepository,EmployeeRepository>();
             services.AddScoped<IPositionRepository, PositionRepository>();
             services.AddScoped<IAttendanceRepository, AttendanceReposiroty>();
             services.AddScoped<IOverTimeRepository, OverTimeRepository>();
+            services.AddScoped<ISalaryRepository, SalaryRepository>();
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,8 +61,9 @@ namespace Pay_Roll_Managment_System
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
             app.UseCors("AllowMyOrigin");
+
+            app.UseCors(options => options.WithOrigins("http://localhost:3000").AllowAnyMethod());
 
             app.UseAuthorization();
 

@@ -23,7 +23,7 @@ namespace Pay_Roll_Managment_System.Models
         [Required]
         public string ContactInfo { get; set; }
         [Required]
-        public bool Gender { get; set; } // 1 == male , 0 == female
+        public string Gender { get; set; } // 1 == male , 0 == female
         [Required]
         public string RegistrationNo { get; set; }
         
