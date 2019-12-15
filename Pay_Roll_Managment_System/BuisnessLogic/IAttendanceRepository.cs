@@ -12,7 +12,7 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
         Attendance GetAttendance(int AttendanceId);
         bool AttendanceExsists(int AttendanceId);
         bool CreateAttendance(Attendance Attendance);
-
+        bool UpdateAttendance(Attendance Attendance);
         bool Save();
 
     }
