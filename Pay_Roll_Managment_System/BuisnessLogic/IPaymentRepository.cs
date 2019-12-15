@@ -14,5 +14,6 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
         bool CreatePayment(Payment Payment);
         bool UpdatePayment(Payment Payment);
         bool Save();
+        bool DeletePayment(Payment payment);
     }
 }

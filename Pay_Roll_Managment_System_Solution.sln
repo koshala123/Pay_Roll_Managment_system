@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pay_Roll_Managment_System", "Pay_Roll_Managment_System\Pay_Roll_Managment_System.csproj", "{736A7082-09BF-44F2-A566-3FB3B0906FD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pay_Roll_Managment_System", "Pay_Roll_Managment_System\Pay_Roll_Managment_System.csproj", "{736A7082-09BF-44F2-A566-3FB3B0906FD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
