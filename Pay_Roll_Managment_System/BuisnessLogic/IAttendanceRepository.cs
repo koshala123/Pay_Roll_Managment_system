@@ -1,4 +1,5 @@
-﻿using Pay_Roll_Managment_System.Models;
+﻿using Pay_Roll_Managment_System.Dtos;
+using Pay_Roll_Managment_System.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
         ICollection<Attendance> GetAttendances();
         Attendance GetAttendance(int AttendanceId);
         bool AttendanceExsists(int AttendanceId);
-        bool CreateAttendance(Attendance Attendance);
-        bool UpdateAttendance(Attendance Attendance);
+        bool CreateAttendance(AttendanceDto Attendance);
+        bool UpdateAttendance(AttendanceDto Attendance);
         bool Save();
 
     }
