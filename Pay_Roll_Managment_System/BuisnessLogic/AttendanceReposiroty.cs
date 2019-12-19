@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Pay_Roll_Managment_System.Dtos;
 using Pay_Roll_Managment_System.Models;
 
 namespace Pay_Roll_Managment_System.BuisnessLogic
@@ -18,9 +19,14 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
             return _PayRollManagmentContext.Attendances.Any(a => a.AttendanceId == AttendanceId);
         }
 
-        public bool CreateAttendance(Attendance Attendance)
+        public bool CreateAttendance(AttendanceDto Attendance)
         {
-            _PayRollManagmentContext.Attendances.Add(Attendance);
+            Attendance attendance = new Attendance();
+
+            attendance.EmployeeId = Int32.Parse(Attendance.EmployeeId);
+            attendance.inTime = Attendance.inTime;
+
+            _PayRollManagmentContext.Add(attendance);
             return Save();
         }
 
@@ -39,9 +45,16 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
             var save =_PayRollManagmentContext.SaveChanges();
             return save >= 0 ? true : false;
         }
-        public bool UpdateAttendance(Attendance Attendance)
+        public bool UpdateAttendance(AttendanceDto Attendance)
         {
-            _PayRollManagmentContext.Update(Attendance);
+            Attendance attendance = new Attendance();
+
+            attendance.AttendanceId = Int32.Parse(Attendance.AttendanceId);
+            attendance.EmployeeId = Int32.Parse(Attendance.EmployeeId);
+            attendance.inTime = Attendance.inTime;
+            attendance.outTime = Attendance.outTime;
+
+            _PayRollManagmentContext.Update(attendance);
             return Save();
         }
     }

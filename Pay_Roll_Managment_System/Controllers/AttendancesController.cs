@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Pay_Roll_Managment_System.BuisnessLogic;
+using Pay_Roll_Managment_System.Dtos;
 using Pay_Roll_Managment_System.Models;
 
 namespace Pay_Roll_Managment_System.Controllers
@@ -59,7 +60,7 @@ namespace Pay_Roll_Managment_System.Controllers
         [ProducesResponseType(201, Type = typeof(Attendance))]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public IActionResult CreateAttendance ([FromBody]Attendance Attendance)
+        public IActionResult CreateAttendance ([FromBody]AttendanceDto Attendance)
         {
             if (Attendance == null)
             {
@@ -75,14 +76,14 @@ namespace Pay_Roll_Managment_System.Controllers
             {
                 return StatusCode(500, ModelState);
             }
-            return CreatedAtRoute("GetAttendance", new { AttendanceId = Attendance.AttendanceId }, Attendance);
+            return NoContent();
         }
 
         [HttpPut/*("{AttendanceId}")*/]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public IActionResult UpdateAttendance (/*int AttendanceId,*/[FromBody]Attendance attendanceToUpdate)
+        public IActionResult UpdateAttendance (/*int AttendanceId,*/[FromBody]AttendanceDto attendanceToUpdate)
         {
             if (attendanceToUpdate == null)
             {
