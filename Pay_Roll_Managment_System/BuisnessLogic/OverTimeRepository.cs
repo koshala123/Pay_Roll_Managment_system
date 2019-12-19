@@ -20,7 +20,7 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
             return Save();
         }
 
-        /*public OverTimeDto GetOverTime(int OverTimeId)
+        public OverTimeDto GetOverTime(int OverTimeId)
         {
             var InnerJoinQuery = (from employee in _PayRollManagmentContext.Employees
                                   join attendance in _PayRollManagmentContext.Attendances
@@ -38,7 +38,7 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
                                   ).FirstOrDefault();
             
             return InnerJoinQuery;
-        }*/
+        }
 
         public ICollection<OverTimeDto> GetOverTimes()
         {

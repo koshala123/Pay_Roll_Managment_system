@@ -114,12 +114,12 @@ namespace Pay_Roll_Managment_System.Controllers
         }
 
         //api/Employees/EmployeeId
-        [HttpPut("{EmployeeId}")]
+        [HttpPut/*("{EmployeeId}")*/]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
 
-        public IActionResult UpdatEmployee (int EmployeeId ,[FromBody]EmployeeDto EmployeeToUpdate)
+        public IActionResult UpdatEmployee (/*int EmployeeId ,*/ [FromBody]EmployeeDto EmployeeToUpdate)
         {
             if (EmployeeToUpdate == null)
             {
