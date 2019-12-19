@@ -22,38 +22,54 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
 
         public OverTimeDto GetOverTime(int OverTimeId)
         {
-            var InnerJoinQuery = (from overtime in _PayRollManagmentContext.OverTimes
-                                  join employee in _PayRollManagmentContext.Employees
-                                  on overtime.EmployeeId equals employee.EmployeeId
-                                  where overtime.OverTimeId == OverTimeId
+            var InnerJoinQuery = (from employee in _PayRollManagmentContext.Employees
+                                  join attendance in _PayRollManagmentContext.Attendances
+                                  on employee.EmployeeId equals attendance.EmployeeId
+                                  where attendance.EmployeeId == OverTimeId
                                   select new OverTimeDto
                                   {
-                                      OverTimeId = overtime.OverTimeId,
-                                      EmployeeId = overtime.EmployeeId,
-                                      Amount = overtime.Amount,
-                                      AdditionalHours = overtime.AdditionalHours,
+                                      OverTimeId = attendance.AttendanceId,
+                                      EmployeeId = attendance.EmployeeId,
+                                      
+                                      WorkHour = Convert.ToInt32((attendance.outTime - attendance.inTime).TotalHours),
                                       EmployeeFirstName = employee.FirstName,
                                       EmployeeLastName = employee.LastName
                                   }
                                   ).FirstOrDefault();
+            
             return InnerJoinQuery;
         }
 
         public ICollection<OverTimeDto> GetOverTimes()
         {
-            var InnerJoinQuery = (from overtime in _PayRollManagmentContext.OverTimes
-                                  join employee in _PayRollManagmentContext.Employees
-                                  on overtime.EmployeeId equals employee.EmployeeId
+            var InnerJoinQuery = (from employee in _PayRollManagmentContext.Employees
+                                  join attendance in _PayRollManagmentContext.Attendances
+                                  on employee.EmployeeId equals attendance.EmployeeId
                                   select new OverTimeDto
                                   {
-                                      OverTimeId = overtime.OverTimeId,
-                                      EmployeeId = overtime.EmployeeId,
-                                      Amount = overtime.Amount,
-                                      AdditionalHours = overtime.AdditionalHours,
+                                      OverTimeId = attendance.AttendanceId,
+                                      EmployeeId = attendance.EmployeeId,
+                                      
+                                      WorkHour = Convert.ToInt32((attendance.outTime - attendance.inTime).TotalHours),
                                       EmployeeFirstName = employee.FirstName,
-                                      EmployeeLastName = employee.LastName
+                                      EmployeeLastName = employee.LastName,
+                                      
+
                                   }
                                   ).ToList();
+
+            //Console.WriteLine(InnerJoinQuery);
+
+            foreach(OverTimeDto OT in InnerJoinQuery)
+            {
+                if(OT.WorkHour > 8)
+                {
+                    int difference = OT.WorkHour - 8;
+                    int payment = difference * 1000;
+                    OT.Amount = payment;
+                }
+            }
+            
             return InnerJoinQuery;
         }
 

@@ -55,7 +55,7 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
                                  where employee.EmployeeId == EmployeeId
                                  select new EmployeeDto
                                  {
-                                     EmployeeId = employee.EmployeeId,
+                                     EmployeeId = employee.EmployeeId.ToString(),
                                      FirstName = employee.FirstName,
                                      LastName = employee.LastName,
                                      RegistrationNo = employee.RegistrationNo,
@@ -79,7 +79,7 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
                                   on employee.PoistionId equals position.PositionId
                                   select new EmployeeDto
                                   {
-                                      EmployeeId = employee.EmployeeId,
+                                      EmployeeId = employee.EmployeeId.ToString(),
                                       FirstName = employee.FirstName,
                                       LastName = employee.LastName,
                                       RegistrationNo = employee.RegistrationNo,
@@ -117,7 +117,7 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
             emp.ImgUrl = employee.ImgUrl;
             emp.CreatedOn = employee.CreatedOn;
             emp.PoistionId = Int32.Parse(employee.PositionId);
-            emp.EmployeeId = Int32.Parse(employee.StringEmployeeId);
+            emp.EmployeeId = Int32.Parse(employee.EmployeeId);
 
             _PayRollManagmentContext.Update(emp);
             return Save();
