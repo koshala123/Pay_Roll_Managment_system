@@ -17,8 +17,7 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
         public bool CreateEmployee(EmployeeDto employee)
         {
             Employee emp = new Employee();
-            
-            
+                      
             emp.FirstName = employee.FirstName;
             emp.LastName = employee.LastName;
             emp.RegistrationNo = employee.RegistrationNo;

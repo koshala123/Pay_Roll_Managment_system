@@ -174,9 +174,6 @@ namespace Pay_Roll_Managment_System.Migrations
                     b.Property<int>("Commission")
                         .HasColumnType("int");
 
-                    b.Property<int>("OverTime")
-                        .HasColumnType("int");
-
                     b.Property<int>("PoistionId")
                         .HasColumnType("int");
 

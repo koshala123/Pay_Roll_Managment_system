@@ -1,4 +1,5 @@
-﻿using Pay_Roll_Managment_System.Models;
+﻿using Pay_Roll_Managment_System.Dtos;
+using Pay_Roll_Managment_System.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
 {
     public interface IPaymentRepository
     {
-        ICollection<Payment> GetPayments();
+        ICollection<PaymentDto> GetPayments();
         Payment GetPayment(int PaymentId);
         bool PaymentExsists(int PaymentId);
         bool CreatePayment(Payment Payment);

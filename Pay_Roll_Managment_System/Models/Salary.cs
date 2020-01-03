@@ -16,7 +16,7 @@ namespace Pay_Roll_Managment_System.Models
         public int BasicSalary { get; set; }
         public int Bonus { get; set; }
         public int Commission { get; set; }
-        public int OverTime { get; set; }
+        //public int OverTime { get; set; }
 
          
         [ForeignKey("PoistionId")]
