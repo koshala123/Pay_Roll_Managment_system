@@ -50,7 +50,7 @@ namespace Pay_Roll_Managment_System.BuisnessLogic
                                       OverTimeId = attendance.AttendanceId,
                                       EmployeeId = attendance.EmployeeId,
                                       
-                                     WorkHour = Convert.ToInt32((attendance.outTime - attendance.inTime).TotalHours),
+                                      WorkHour = Convert.ToInt32((attendance.outTime - attendance.inTime).TotalHours),
                                       EmployeeFirstName = employee.FirstName,
                                       EmployeeLastName = employee.LastName,
                                       

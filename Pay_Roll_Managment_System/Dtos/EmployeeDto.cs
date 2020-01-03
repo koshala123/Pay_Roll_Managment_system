@@ -7,7 +7,7 @@ namespace Pay_Roll_Managment_System.Dtos
 {
     public class EmployeeDto
     {
-        public int EmployeeId { get; set; }
+        public string EmployeeId { get; set; }
         public string RegistrationNo { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -20,7 +20,7 @@ namespace Pay_Roll_Managment_System.Dtos
         public string PositionName { get; set; }
 
         public string PositionId { get; set; }
-        public string StringEmployeeId { get; set; }
+        //public string StringEmployeeId { get; set; }
 
     }
 }
